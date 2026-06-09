@@ -1,0 +1,42 @@
+<div class="dashboard mx-5 p-4 max-w-2xl">
+  <h1 class="text-3xl font-bold">PulseTask Dashboard</h1>  
+  <!-- <header> -->
+    
+  <!-- </header> -->
+
+  <section class="tasks-section grid grid-cols-2 items-center mt-6">
+    <div class="stats mr-4">
+      <span>{{ taskStore.completionPercentage() }}% Complete</span>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="taskStore.completionPercentage()"></div>
+      </div>
+    </div>
+    <div class="add-task">
+      <input #taskInput type="text" placeholder="Add a new goal..." (keyup.enter)="handleAddTask(taskInput)" class="p-2 border rounded">
+      <button (click)="handleAddTask(taskInput)" class="btn btn-primary add-task-btn">Add</button>
+    </div>
+  </section>
+
+  <nav class="filter-bar grid grid-cols-3 gap-2">
+    <button [class.active]="taskStore.filter() === 'all'" (click)="handleFilterChange('all')">All</button>
+    <button [class.active]="taskStore.filter() === 'pending'" (click)="handleFilterChange('pending')">Pending</button>
+    <button [class.active]="taskStore.filter() === 'completed'" (click)="handleFilterChange('completed')">Completed</button>
+  </nav>
+
+  <main class="list-container mt-4">
+    @for (task of taskStore.filteredTasks(); track task.id) {
+      <div class="task-card group flex" [class.is-done]="task.completed">
+        <input type="checkbox" [checked]="task.completed" (change)="handleToggle(task.id)" class="mr-5 cursor-pointer">
+         <span class="task-title">{{ task.title }}</span>
+        <button class="btn-delete hidden group-hover:flex text-red-500 hover:text-red-700" (click)="handleDelete(task.id)">&#128465;</button>
+      </div>
+    } @empty {
+      <div class="empty-state">
+        <p>Your list is empty. Time to start something new!</p>
+      </div>
+    }
+  </main>
+  <section class="chart-section mt-8">
+    <app-piechartcomponent></app-piechartcomponent>
+  </section>
+</div>
