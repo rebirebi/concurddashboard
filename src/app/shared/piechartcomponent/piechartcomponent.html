@@ -1,0 +1,13 @@
+<div style="display: block; width: 450px; height: 450px; margin: auto;">
+  @if (hasData()) {
+    <canvas 
+      baseChart
+      [data]="pieChartData()"
+      [type]="pieChartType"
+      [options]="pieChartOptions"
+      [plugins]="pieChartPlugins">
+    </canvas>
+  } @else {
+    <p style="text-align: center; padding-top: 50px;">Fetching live signal updates...</p>
+  }
+</div>

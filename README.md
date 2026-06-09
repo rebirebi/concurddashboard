@@ -57,3 +57,10 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+Layer,Type,Responsibility
+State,signal<Task[]>,"The ""Source of Truth"" holding our array of tasks."
+Filter,signal<string>,"Holds the current view state ('all', 'done', etc.)."
+Derived,computed(),Filters the task list based on the state + filter signals.
+Percentage,computed(),Calculates (completed / total) * 100 for the progress bar.
+Storage,effect(),Automatically mirrors the task list to localStorage.
