@@ -55,12 +55,17 @@ ng e2e
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
 ## Additional Resources
+<img width="331" height="465" alt="image" src="https://github.com/user-attachments/assets/11d94d04-8820-4dbc-a2e1-7d1d701b2d75" />
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🧠 State Management Architecture (Angular Signals)
 
-Layer,Type,Responsibility
-State,signal<Task[]>,"The ""Source of Truth"" holding our array of tasks."
-Filter,signal<string>,"Holds the current view state ('all', 'done', etc.)."
-Derived,computed(),Filters the task list based on the state + filter signals.
-Percentage,computed(),Calculates (completed / total) * 100 for the progress bar.
-Storage,effect(),Automatically mirrors the task list to localStorage.
+| Layer | Type | Responsibility |
+| :--- | :--- | :--- |
+| **State** | `signal<Task[]>` | The "Source of Truth" holding our array of tasks. |
+| **Filter** | `signal<string>` | Holds the current view state ('all', 'done', etc.). |
+| **Derived** | `computed()` | Filters the task list based on the state + filter signals. |
+| **Percentage** | `computed()` | Calculates (completed / total) * 100 for the progress bar. |
+| **Storage** | `effect()` | Automatically mirrors the task list to localStorage. |
+
+
+
