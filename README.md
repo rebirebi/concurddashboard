@@ -1,61 +1,28 @@
 # Concurdashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+``` https://concurddashboard.onrender.com/ ```
 
-## Development server
+A small Angular 21 task dashboard app that tracks simple goals and visualizes progress.
 
-To start a local development server, run:
+## Summary
 
-```bash
-ng serve
-```
+`concurdashboard` is a lightweight task tracker built with Angular signals. It stores tasks in a root `TaskStore` service (persisted to `localStorage`), and provides a single-page `Dashboard` view where users can add tasks, toggle completion, delete tasks, and filter the list. A pie chart component visualizes completed vs pending tasks using `ng2-charts` and `chart.js`.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Features
 
-## Code scaffolding
+- Add, toggle, and delete tasks
+- Filter tasks by `all`, `pending`, and `completed`
+- Completion percentage and progress bar
+- Pie chart visualization of task distribution
+- Persistent storage via `localStorage`
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Architecture
 
-```bash
-ng generate component component-name
-```
+- `TaskStore` (root service) — holds tasks and filter state; exposes computed signals: `tasks`, `filteredTasks`, `completionPercentage` and persists to `localStorage`.
+- `Dashboard` (standalone component) — main UI: task list, input, filter buttons, progress bar and embedded pie chart.
+- `Piechartcomponent` — renders a reactive pie chart using data derived from `TaskStore`.
+- `ChartService` — placeholder for centralized chart-related logic (transformations, options).
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-<img width="331" height="465" alt="image" src="https://github.com/user-attachments/assets/11d94d04-8820-4dbc-a2e1-7d1d701b2d75" />
 
 ## 🧠 State Management Architecture (Angular Signals)
 
@@ -66,6 +33,11 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 | **Derived** | `computed()` | Filters the task list based on the state + filter signals. |
 | **Percentage** | `computed()` | Calculates (completed / total) * 100 for the progress bar. |
 | **Storage** | `effect()` | Automatically mirrors the task list to localStorage. |
+
+
+## Additional Resources
+<img width="331" height="465" alt="image" src="https://github.com/user-attachments/assets/11d94d04-8820-4dbc-a2e1-7d1d701b2d75" />
+
 
 
 
